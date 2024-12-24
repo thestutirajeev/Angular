@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<style>
+    input.ng-invalid {
+        background-color: lightblue;
+    }
+</style>
+<body>
+    <p>Use the ng-model directive to bind the value of the input field to a property made in the controller.</p>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        Name: <input ng-model="name">
+        <h1>You entered: {{name}}</h1>
+        <p>Change the name inside the input field, and you will see the name in the header changes accordingly.</p>
+
+        <br>    <br>
+        <p>The ng-model directive can provide type validation for application data (number, e-mail, required):</p>
+        <form name="myForm">
+            Enter Something:<input name="myInput" ng-model="inputText" required>
+            <span ng-show="myForm.myInput.$touched && myForm.myInput.$invalid" style="color: red;">The field is required.</span><br>
+            
+            Email: <input type="email" ng-model="emailText" name="myAddress" required>            
+            <span ng-show="myForm.myAddress.$error.email" style="color: red;">Not a valid e-mail address</span>
+            <b>Status</b>
+            Valid: {{myForm.myAddress.$valid}}
+            Dirty: {{myForm.myAddress.$dirty}}
+            Touched: {{myForm.myAddress.$touched}}
+        </form>
+    </div>
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope) {
+            $scope.name = "Stuti Rajeev";
+        });
+    </script>
+
+    <p>If the property in the ng-model attribute does not exist, AngularJS will create one for you.</p>
+    </body>
+</html>
