@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+    <h1>AngularJS Controllers</h1>
+    <p><strong>AngularJS controllers</strong> control the data of AngularJS applications.</p>
+    <p>AngularJS controllers are regular JavaScript Objects.</p>
+    <p>AngularJS applications are controlled by controllers.</p>
+    <p>The <code>ng-controller</code> directive defines the application controller.</p>
+    <p>A controller is a JavaScript Object, created by a standard JavaScript object constructor.</p>
+    <p>Application explained:</p>
+    <ul>
+        <li>The AngularJS application is defined by <code>ng-app="myApp"</code>. The application runs inside the <code>&lt;div&gt;</code>.</li>
+        <li>The <code>ng-controller="myCtrl"</code> attribute is an AngularJS directive. It defines a controller.</li>
+        <li>The <code>myCtrl</code> function is a JavaScript function.</li>
+        <li>AngularJS will invoke the controller with a <code>$scope</code> object.</li>
+        <li>In AngularJS, <code>$scope</code> is the application object (the owner of application variables and functions).</li>
+        <li>The controller creates two properties (variables) in the scope (<code>firstName</code> and <code>lastName</code>).</li>
+        <li>The <code>ng-model</code> directives bind the input fields to the controller properties (<code>firstName</code> and <code>lastName</code>).</li>
+    </ul>
+    First Name: <input type="text" ng-model="firstName"><br>
+    Last Name: <input type="text" ng-model="lastName"><br>
+    <br>
+    Full Name: {{firstName + " " + lastName}}
+
+    <h1>Controller Methods (functions)</h1>
+    <p>{{myFunction()}}</p>
+
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope) {
+        $scope.firstName = "Stuti";
+        $scope.lastName = "Rajeev";
+
+        //Controller function
+        $scope.myFunction = function() {
+            return 'This text is returned from the controller function';
+        };
+    });
+</script>
+
+</body>
+</html>
