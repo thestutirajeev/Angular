@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <h2>HTML View</h2>
+        <p>The HTML container where the AngularJS application is displayed, is called the view.</p>
+        <p>The view has access to the model, and there are several ways of displaying model data in the view.</p>
+        <ol>
+            <b>One-way binding means that changes in the model update the view, but changes in the view do not update the model.</b>
+            <li>You can use the <code>ng-bind</code> directive, which will bind the innerHTML of the element to the specified model property:</li>
+            <p ng-bind="firstname"></p>
+            Name:<input ng-bind="firstname"/>Change the name inside the input field, and the model data will not change automatically, and therefore the above value will not change because of one-way binding.
+            <p>The <code>ng-bind</code> directive provides a one-way binding between the model and the view.</p>            
+            
+            <li>You can use the double curly braces <code>{{ }}</code> to bind the model to the view. This is called interpolation:</li>
+            <p>{{firstname}}</p>
+            <p>The double curly braces <code>{{ }}</code> provide a one-way binding between the model and the view.</p>
+                        
+            <li>You can use the <code>ng-model</code> directive to bind the model to the view. The <code>ng-model</code> directive binds the value of HTML controls (input, select, textarea) to application data:</li>
+            <p>The <code>ng-model</code> directive provides a two-way binding between the model and the view.</p>
+            <p>Change the name inside the input field, and the model data will change automatically, and therefore the below value will change.</p>
+            Name: <input ng-model="name">
+            <h1>{{name}}</h1>                
+        </ol>
+
+        
+        <h2>AngularJS Controller</h2>
+        <ul>
+            <li>Applications in AngularJS are controlled by controllers.</li>
+            <li>The <code>ng-controller</code> directive defines the application controller.</li>
+            <li>Because of the immediate synchronization of the model and the view, the controller can be completely separated from the view, and simply concentrate on the model data. Thanks to the data binding in AngularJS, the view will reflect any changes made in the controller.</li>
+            <h1 ng-click="clickWord()">{{clickword}}</h1>
+        </ul>
+    </div>
+
+    <script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope) {
+        $scope.firstname = "Stuti";
+        $scope.name = "Shiva";
+        //For click event in controller
+        $scope.clickword = "Click me to change";
+        $scope.clickWord = function() {
+            $scope.clickword = "Changed!";
+        }
+    });
+    </script>
+</body>
+</html>
