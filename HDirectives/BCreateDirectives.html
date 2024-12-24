@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body ng-app="myApp">
+<pre>
+<b>We can invoke a directive by using:</b>
+<ul>Element name: <test-directive></test-directive>
+</ul>
+<ul>Attribute: <div test-directive></div>
+</ul>
+<ul>Class: <div class="test-directive"></div>
+    <strong>Note:</strong> You must add the value "C" to the restrict property to be able to invoke the directive from a class name.
+</ul>
+<ul>Comment: <!-- directive: test-directive -->
+    <strong>Note:</strong> We've added the <strong>replace</strong> property in this example, otherwise the comment would be invisible.
+    <strong>Note:</strong> You must add the value "M" to the <strong>restrict</strong> property to be able to invoke the directive from a comment.
+</ul>
+</pre>
+
+<script>
+var app = angular.module("myApp", []);
+app.directive("testDirective", function() {
+    return {
+        replace : true, //This will replace the comment with the directive template
+        
+        restrict : "EACM", //E for Element name, A for Attribute, C for Class, M for Comment
+        template : "<h4>Made by a test directive!</h4>"
+    };
+    //By adding a restrict property with the value "A", the directive can only be invoked by attributes:
+});
+</script>
+
+</body>
+</html>
