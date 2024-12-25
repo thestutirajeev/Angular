@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body ng-app="myApp">
+
+    <h1>AngularJS Scopes</h1>
+    <p>The scope is the binding part between the HTML (view) and the JavaScript (controller).</p>
+    <p>The scope is an object with the available properties and methods.</p>
+    <p>The scope is available for both the view and the controller.</p>
+    <p>How to Use the Scope?</p>
+    <p>When you make a controller in AngularJS, you pass the $scope object as an argument.</p>
+    <p>AngularJS has two types of scopes: $rootScope and $scope.</p>
+    <p>When adding properties to the $scope object in the controller, the view (HTML) gets access to these properties.</p>
+    <p>In the view, you do not use the prefix $scope, you just refer to a property name, like {{carname}}.</p>
+    <p>Understanding the Scope</p>
+    <p>If we consider an AngularJS application to consist of:</p>
+    <ul>
+        <li>View, which is the HTML.</li>
+        <li>Model, which is the data available for the current view.</li>
+        <li>Controller, which is the JavaScript function that makes/changes/removes/controls the data.</li>
+    </ul>
+    <p>Then the scope is the Model.</p>
+    <p>The scope is a JavaScript object with properties and methods, which are available for both the view and the controller.</p>
+    <p>The $rootScope is the top-most scope. An app can have only one $rootScope which will be shared among all the components of an app.</p>
+    <p>Controllers have their own $scope, which is prototypically inherited from the $rootScope. It can be used to share data between controllers.</p>
+
+<p>The rootScope's favorite color:</p>
+<h1>{{color}}</h1>
+
+<div ng-controller="myCtrl">
+
+<p>The scope of the controller's favorite color:</p>
+<h1>{{color}}</h1>
+
+</div>
+
+<p>The rootScope's favorite color is still:</p>
+<h1>{{color}}</h1>
+
+<script>
+var app = angular.module('myApp', []);
+app.run(function($rootScope) {
+    $rootScope.color = 'blue';
+});
+app.controller('myCtrl', function($scope) {
+    $scope.color = "red";
+});
+</script>
+
+<p>Notice that controller's color variable does not overwrite the rootScope's color value.</p>
+
+</body>
+</html>
